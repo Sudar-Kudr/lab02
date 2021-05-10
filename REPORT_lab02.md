@@ -40,8 +40,8 @@ $ git config --global hub.protocol https    #задаем https протокол
 ```
 
 ```sh
-$ mkdir projects/lab02 && cd projects/lab02             #создаем в директории projects папку lab02 и спускаемся в неё
-$ git init                                                 #создаём подкаталог с именем .git, содержащий структуру git репозитория
+$ mkdir projects/lab02 && cd projects/lab02                        #создаем в директории projects папку lab02 и спускаемся в неё
+$ git init                                                          #создаём подкаталог с именем .git, содержащий структуру git репозитория
 $ git config --global user.name ${GITHUB_USERNAME}                   #указываем имя пользователя 
 $ git config --global user.email ${GITHUB_EMAIL}                      #указываем адрес адрес почтового ящика
 # check your git global settings                                       #(пер.) проверьте глобальные настройки git
