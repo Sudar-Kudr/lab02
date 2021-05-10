@@ -14,6 +14,141 @@ $ open https://git-scm.com
 - [ok] 4. Выполнить инструкцию учебного материала
 - [ok] 5. Составить отчет и отправить ссылку личным сообщением в **Slack**
 
+## Tutorial
+
+```sh
+$ export GITHUB_USERNAME=<имя_пользователя>        #присваиваем <имя_пользователя> в переменную GITHUB_USERNAME
+$ export GITHUB_EMAIL=<адрес_почтового_ящика>     #присваиваем <сохраненный_токен> в переменную GIST_TOKEN
+$ export GITHUB_TOKEN=<сгенирированный_токен>    #присваиваем <сгенирированный_токен> в переменную GITHUB_TOKEN
+$ alias edit=<nano|vi|vim|subl>                 #выбираем какой редактор хотим открыть
+```
+
+```sh
+$ cd ${GITHUB_USERNAME}/workspace   #спускаемся в workspace
+$ source scripts/activate          #выполняем скрипт
+```
+
+```sh
+$ mkdir ~/.config                              #создаем директорию .config
+$ cat > ~/.config/hub <<EOF                   #создаем файл и пишем данные от EOF до EOF
+github.com:
+- user: ${GITHUB_USERNAME}
+  oauth_token: ${GITHUB_TOKEN}
+  protocol: https
+EOF
+$ git config --global hub.protocol https    #задаем https протокол
+```
+
+```sh
+$ mkdir projects/lab02 && cd projects/lab02             #создаем в директории projects папку lab02 и спускаемся в неё
+$ git init                                                 #создаём подкаталог с именем .git, содержащий структуру git репозитория
+$ git config --global user.name ${GITHUB_USERNAME}                   #указываем имя пользователя 
+$ git config --global user.email ${GITHUB_EMAIL}                      #указываем адрес адрес почтового ящика
+# check your git global settings                                       #(пер.) проверьте глобальные настройки git
+$ git config -e --global                                                #показывает глобальную конфигурацию.
+$ git remote add origin https://github.com/${GITHUB_USERNAME}/lab02.git  #добавление удалённого репозитория
+$ git pull origin main                                                  #забираем изменения из удаленного репозитория и проведем слияние с веткой main
+$ touch README.md                                                      #создаем файл README.md
+$ git status                                                          #проверяем состояние репозитория
+$ git add README.md                                                  #добавляем файл
+$ git commit -m "added README.md"                                   #закомментируем все файлы, в которых были изменения
+$ git push origin main                                             #отправляем данные на сервер, в удаленный репозиторий main
+```
+
+Добавить на сервисе **GitHub** в репозитории **lab02** файл **.gitignore**
+со следующем содержимом:
+
+```sh
+*build*/
+*install*/
+*.swp
+.idea/
+```
+
+```sh
+$ git pull origin main     #забираем изменения из удаленного репозитория и проведем слияние с веткой main
+$ git log                  #посмотрим истории коммитов
+```
+
+```sh
+$ mkdir sources                #создаем папку sourses
+$ mkdir include                 #создаем папку include
+$ mkdir examples                 #создаем папку examples
+$ cat > sources/print.cpp <<EOF   #создаем файл формата .cpp и пишем данные от EOF до EOF
+#include <print.hpp>
+
+void print(const std::string& text, std::ostream& out)
+{
+  out << text;
+}
+
+void print(const std::string& text, std::ofstream& out)
+{
+  out << text;
+}
+EOF
+```
+
+```sh
+$ cat > include/print.hpp <<EOF           #создаем файл формата .hpp и пишем данные от EOF до EOF
+#include <fstream>
+#include <iostream>
+#include <string>
+
+void print(const std::string& text, std::ofstream& out);
+void print(const std::string& text, std::ostream& out = std::cout);
+EOF
+```
+
+```sh
+$ cat > examples/example1.cpp <<EOF        #создаем файл формата .cpp и пишем данные от EOF до EOF
+#include <print.hpp>
+
+int main(int argc, char** argv)
+{
+  print("hello");
+}
+EOF
+```
+
+```sh
+$ cat > examples/example2.cpp <<EOF        #создаем файл формата .cpp и пишем данные от EOF до EOF
+#include <print.hpp>
+
+#include <fstream>
+
+int main(int argc, char** argv)
+{
+  std::ofstream file("log.txt");
+  print(std::string("hello"), file);
+}
+EOF
+```
+
+```sh
+$ edit README.md     #открываем текстовый редактор и редактируем README.md
+```
+
+```sh
+$ git status                   #проверяем состояние репозитория
+$ git add .                     #добавляем все файлы, в которых были изменения
+$ git commit -m"added sources"   #закомментируем все файлы, в которых были изменения
+$ git push origin master          #отправляем данные на сервер, в удаленный репозиторий main
+```
+
+## Report
+
+```sh
+$ cd ~/workspace/
+$ export LAB_NUMBER=02                                                          #присваиваем 02 в переменную LAB_NUMBER
+$ git clone https://github.com/tp-labs/lab${LAB_NUMBER} tasks/lab${LAB_NUMBER} #клонируем из ссылки в директорию (в наше случае-tasks/lab02)
+$ mkdir reports/lab${LAB_NUMBER}                                              #создаем директорию (в наше случае- lab02)                                      
+$ cp tasks/lab${LAB_NUMBER}/README.md reports/lab${LAB_NUMBER}/REPORT.md     #спускаемся в директорию (в наше случае- lab02)
+$ cd reports/lab${LAB_NUMBER}                                               #копируем из одной директории в другую
+$ edit REPORT.md                                                           #редактируем REPORT.md
+$ gist REPORT.md                                                          #сохраняем REPORT.md
+```
+
 ## Homework
 
 ### Part I
