@@ -17,9 +17,9 @@ $ open https://git-scm.com
 ## Tutorial
 
 ```sh
-$ export GITHUB_USERNAME=<имя_пользователя>        #присваиваем <имя_пользователя> в переменную GITHUB_USERNAME
-$ export GITHUB_EMAIL=<адрес_почтового_ящика>     #присваиваем <адрес_почтового_ящика> в переменную GITHUB_EMAIL
-$ export GITHUB_TOKEN=<сгенирированный_токен>    #присваиваем <сгенирированный_токен> в переменную GITHUB_TOKEN
+$ export GITHUB_USERNAME=<имя_пользователя>        #присваиваем имя пользователя GitHub в переменную GITHUB_USERNAME
+$ export GITHUB_EMAIL=<адрес_почтового_ящика>     #присваиваем адрес почты в переменную GITHUB_EMAIL
+$ export GITHUB_TOKEN=<сгенирированный_токен>    #присваиваем сгенирированный токен в переменную GITHUB_TOKEN
 $ alias edit=<nano|vi|vim|subl>                 #выбираем какой редактор хотим открыть
 ```
 
